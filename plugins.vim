@@ -1,6 +1,8 @@
 call plug#begin('~/.vim/plugged')
   " general
   Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'scrooloose/nerdtree'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
 
   " code general
   Plug 'Chiel92/vim-autoformat'
@@ -23,6 +25,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'leafgarland/typescript-vim'
   Plug 'Quramy/tsuquyomi'
   Plug 'kchmck/vim-coffee-script'
+  Plug 'mustache/vim-mustache-handlebars'
 
   " ruby / rails
   Plug 'tpope/vim-rails'

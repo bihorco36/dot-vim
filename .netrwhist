@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/jbinder/git/projects/puzzlecv2/app'
+let g:netrw_dirhist_2='/home/jbinder/git/projects/puzzlecv2/app/serializer'
+let g:netrw_dirhist_3='/home/jbinder/git/projects/puzzlecv2/frontend/app/templates/components'
+let g:netrw_dirhist_4='/home/jbinder/git/projects/puzzlecv2/app/serializer'

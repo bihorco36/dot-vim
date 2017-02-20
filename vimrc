@@ -1,9 +1,11 @@
 source ~/.vim/plugins.vim
 
 " UI
-set guioptions=i
-colorscheme desert
-set background=dark
+color codeschool
+set guioptions-=T " Removes top toolbar
+set guioptions-=r " Removes right hand scroll bar
+set go-=L " Removes left hand scroll bar
+autocmd User Rails let b:surround_{char2nr('-')} = "<% \r %>" " displays <% %> correctly
 
 " use spaces instead of tabs
 set tabstop=2
@@ -28,6 +30,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" ctrlp vim
+set wildignore+=*tmp/*,*node_modules/*,*dist/*,*.so,*.swp,*.zip
 
 " indentation
 filetype plugin indent on
@@ -59,3 +64,13 @@ nnoremap <F5> :!~/.vim/bin/ctags.sh<CR>
 set tags=./tags;/
 
 cabbrev E Explore
+
+" autostart nerdtree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" open current file in opera
+nnoremap <F12>o :exe ':silent !opera %'<CR>
+
+" JS Stuff
+let g:mustache_abbreviations = 1
