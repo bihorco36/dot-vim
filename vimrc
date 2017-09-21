@@ -1,7 +1,9 @@
+let g:ale_emit_conflict_warnings = 0
+
 source ~/.vim/plugins.vim
 
 " UI
-color codeschool
+color murphy
 set guioptions-=T " Removes top toolbar
 set guioptions-=r " Removes right hand scroll bar
 set go-=L " Removes left hand scroll bar
@@ -11,6 +13,9 @@ autocmd User Rails let b:surround_{char2nr('-')} = "<% \r %>" " displays <% %> c
 set tabstop=2
 set shiftwidth=2
 set expandtab
+
+set backupdir=/home/jbinder/.vim/tmp
+set directory=/home/jbinder/.vim/tmp
 
 " buffer stuff
 " set hidden
@@ -40,7 +45,7 @@ filetype plugin indent on
 " map
 let mapleader=","
 nmap <F1> <nop>
-map <F2> orequire 'pry'; binding.pry<ESC>
+map <F2> orequire 'pry'; binding.pry unless @pstop<ESC>
 nnoremap <silent> <F3> :Rgrep<CR>*
 nmap <F1> <nop>
 
@@ -74,3 +79,7 @@ nnoremap <F12>o :exe ':silent !opera %'<CR>
 
 " JS Stuff
 let g:mustache_abbreviations = 1
+
+" Laststatus
+set laststatus=2
+
