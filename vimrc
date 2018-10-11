@@ -3,11 +3,13 @@ let g:ale_emit_conflict_warnings = 0
 source ~/.vim/plugins.vim
 
 " UI
-color murphy
+colorscheme base16-default-dark
+let base16colorspace=256
 set guioptions-=T " Removes top toolbar
 set guioptions-=r " Removes right hand scroll bar
 set go-=L " Removes left hand scroll bar
 autocmd User Rails let b:surround_{char2nr('-')} = "<% \r %>" " displays <% %> correctly
+syntax on
 
 " use spaces instead of tabs
 set tabstop=2
@@ -19,6 +21,9 @@ set directory=/home/jbinder/.vim/tmp
 
 " buffer stuff
 " set hidden
+
+" enable mouse
+set mouse=a
 
 " enable line numbers
 set number
@@ -32,7 +37,7 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 2
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
@@ -46,7 +51,7 @@ filetype plugin indent on
 let mapleader=","
 nmap <F1> <nop>
 map <F2> orequire 'pry'; binding.pry unless @pstop<ESC>
-nnoremap <silent> <F3> :Rgrep<CR>*
+nnoremap <silent> <F3> :Rgrep<CR>
 nmap <F1> <nop>
 
 nnoremap <F4> <C-]> 
@@ -83,3 +88,16 @@ let g:mustache_abbreviations = 1
 " Laststatus
 set laststatus=2
 
+" base16 stuff
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
+
+" load rubyblock
+runtime macros/matchit.vim
+set nocompatible
+
+if has("autocmd")
+  filetype indent plugin on
+endif

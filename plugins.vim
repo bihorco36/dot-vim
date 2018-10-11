@@ -3,6 +3,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'sheerun/vim-polyglot'
+  Plug 'greyblake/vim-preview'
 
   " code general
   Plug 'Chiel92/vim-autoformat'
@@ -15,6 +17,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'yegappan/grep'
   Plug 'tpope/vim-cucumber'
   Plug 'ervandew/supertab'
+  Plug 'othree/html5.vim'
+  Plug 'godlygeek/tabular'
 
   " git
   Plug 'tpope/vim-fugitive'
@@ -22,6 +26,7 @@ call plug#begin('~/.vim/plugged')
   " UI
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+  Plug 'chriskempson/base16-vim'
 
   " js / ts / coffeescript
   Plug 'leafgarland/typescript-vim'
@@ -34,10 +39,19 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-endwise' " adds end to if, do, def ...
   Plug 'vim-ruby/vim-ruby'
+  Plug 'kana/vim-textobj-user'
+  Plug 'nelstrom/vim-textobj-rubyblock'
+  Plug 'tpope/vim-bundler'
 
   " Elm
   Plug 'ElmCast/elm-vim'
   Plug 'w0rp/ale'
+
+  " Md
+  Plug 'suan/vim-instant-markdown'
+
+  " Crystal
+  Plug 'rhysd/vim-crystal'
 
 
 call plug#end()
