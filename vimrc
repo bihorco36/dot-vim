@@ -53,6 +53,13 @@ nmap <F1> <nop>
 map <F2> orequire 'pry'; binding.pry unless @pstop<ESC>
 nnoremap <silent> <F3> :Rgrep<CR>
 nmap <F1> <nop>
+map <F6>  :%s/:\([^=,']*\) =>/\1:/gc<CR>
+
+" RSpec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
 
 nnoremap <F4> <C-]> 
 

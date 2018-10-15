@@ -20,6 +20,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'othree/html5.vim'
   Plug 'godlygeek/tabular'
 
+  " Snipmate
+  Plug 'MarcWeber/vim-addon-mw-utils'
+  Plug 'tomtom/tlib_vim'
+  Plug 'garbas/vim-snipmate'
+
   " git
   Plug 'tpope/vim-fugitive'
 
@@ -42,6 +47,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'kana/vim-textobj-user'
   Plug 'nelstrom/vim-textobj-rubyblock'
   Plug 'tpope/vim-bundler'
+  Plug 'tomtom/tcomment_vim'
+  Plug 'thoughtbot/vim-rspec'
 
   " Elm
   Plug 'ElmCast/elm-vim'
