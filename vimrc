@@ -60,6 +60,7 @@ map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
+let g:rspec_command = "terminal spring rspec {spec}"
 
 nnoremap <F4> <C-]> 
 
@@ -82,12 +83,8 @@ set tags=./tags;/
 
 cabbrev E Explore
 
-" autostart nerdtree
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
 " open current file in opera
-nnoremap <F12>o :exe ':silent !opera %'<CR>
+nnoremap <F12>o :exe ':silent !google-chrome-stable %'<CR>
 
 " JS Stuff
 let g:mustache_abbreviations = 1
@@ -99,12 +96,4 @@ set laststatus=2
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
-endif
-
-" load rubyblock
-runtime macros/matchit.vim
-set nocompatible
-
-if has("autocmd")
-  filetype indent plugin on
 endif

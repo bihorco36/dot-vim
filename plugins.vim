@@ -5,6 +5,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'sheerun/vim-polyglot'
   Plug 'greyblake/vim-preview'
+  Plug 'tpope/vim-dispatch'
 
   " code general
   Plug 'Chiel92/vim-autoformat'
