@@ -21,6 +21,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'othree/html5.vim'
   Plug 'godlygeek/tabular'
 
+  " Autocomplete
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+
   " Snipmate
   Plug 'MarcWeber/vim-addon-mw-utils'
   Plug 'tomtom/tlib_vim'
@@ -40,6 +45,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'kchmck/vim-coffee-script'
   Plug 'mustache/vim-mustache-handlebars'
   Plug 'pangloss/vim-javascript'
+  Plug 'burnettk/vim-angular'
 
   " ruby / rails
   Plug 'tpope/vim-rails'
@@ -52,14 +58,14 @@ call plug#begin('~/.vim/plugged')
   Plug 'thoughtbot/vim-rspec'
 
   " Elm
-  Plug 'ElmCast/elm-vim'
-  Plug 'w0rp/ale'
+  " Plug 'ElmCast/elm-vim'
+  " Plug 'w0rp/ale'
 
   " Md
   Plug 'suan/vim-instant-markdown'
 
   " Crystal
-  Plug 'rhysd/vim-crystal'
+  " Plug 'rhysd/vim-crystal'
 
 
 call plug#end()

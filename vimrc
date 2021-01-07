@@ -7,6 +7,7 @@ colorscheme base16-default-dark
 let base16colorspace=256
 set guioptions-=T " Removes top toolbar
 set guioptions-=r " Removes right hand scroll bar
+set guioptions+=a " Adds Clipboard
 set go-=L " Removes left hand scroll bar
 autocmd User Rails let b:surround_{char2nr('-')} = "<% \r %>" " displays <% %> correctly
 syntax on
@@ -42,7 +43,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " ctrlp vim
-set wildignore+=*tmp/*,*node_modules/*,*dist/*,*.so,*.swp,*.zip
+set wildignore+=*tmp/*,*node_modules/*,*dist/*,*.so,*.swp,*.zip,*spec/coverage*,*spec/reports*
 
 " indentation
 filetype plugin indent on
@@ -66,7 +67,7 @@ nnoremap <F4> <C-]>
 
 " CtrlP
 nnoremap scp :CtrlP<CR>
-nnoremap scl :CtrlP .<CR>
+nnoremap scl :CtrlPCurWD<CR>
 nnoremap scb :CtrlPBuffer<CR>
 nnoremap scr :CtrlPMRU<CR>
 nnoremap sct :CtrlPTag<CR>
@@ -97,3 +98,9 @@ if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
 endif
+
+" clipboard
+set clipboard=unnamed
+
+" Autocomplete
+let g:deoplete#enable_at_startup = 1
