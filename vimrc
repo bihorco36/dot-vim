@@ -43,7 +43,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " ctrlp vim
-set wildignore+=*tmp/*,*node_modules/*,*dist/*,*.so,*.swp,*.zip,*spec/coverage*,*spec/reports*
+set wildignore+=*tmp/*,*node_modules/**,*dist/*,*.so,*.swp,*.zip,*spec/coverage**,*spec/reports**
 
 " indentation
 filetype plugin indent on
@@ -66,9 +66,8 @@ let g:rspec_command = "terminal spring rspec {spec}"
 nnoremap <F4> <C-]> 
 
 " CtrlP
-nnoremap scp :CtrlP<CR>
-nnoremap scl :CtrlPCurWD<CR>
-nnoremap scb :CtrlPBuffer<CR>
+nnoremap scl :CtrlP<CR>
+nnoremap scm :CtrlP %:p:h<CR>
 nnoremap scr :CtrlPMRU<CR>
 nnoremap sct :CtrlPTag<CR>
 
