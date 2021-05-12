@@ -1,6 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/home/jbinder/git/projects/puzzlecv2/app'
-let g:netrw_dirhist_2='/home/jbinder/git/projects/puzzlecv2/app/serializer'
-let g:netrw_dirhist_3='/home/jbinder/git/projects/puzzlecv2/frontend/app/templates/components'
-let g:netrw_dirhist_4='/home/jbinder/git/projects/puzzlecv2/app/serializer'
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/jbinder/.vim'
+let g:netrw_dirhist_5='/home/jbinder/git/projects/socialweb/db/migrate'
+let g:netrw_dirhist_4='/home/jbinder/git/projects/socialweb/frontend/src/app/settings/assessment-template-groups/components'
+let g:netrw_dirhist_3='/home/jbinder/git/projects/socialweb/frontend/src/app/settings/assessment-template-groups'
+let g:netrw_dirhist_2='/home/jbinder/git/projects/socialweb/frontend/src/app/settings'
+let g:netrw_dirhist_1='/home/jbinder/git/projects/socialweb/frontend/src/app/settings/assessment-templates'
+let g:netrw_dirhist_0='/home/jbinder/git/projects/socialweb/frontend/src/app/settings/assessment-templates/components'
+let g:netrw_dirhist_9='/home/jbinder/git/projects/socialweb/spec/models'
+let g:netrw_dirhist_8='/home/jbinder/git/projects/socialweb/app/services/assessments'
+let g:netrw_dirhist_7='/home/jbinder/git/projects/socialweb/app/models'

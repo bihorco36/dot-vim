@@ -6,6 +6,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'sheerun/vim-polyglot'
   Plug 'greyblake/vim-preview'
   Plug 'tpope/vim-dispatch'
+  Plug 'gregsexton/MatchTag'
 
   " code general
   Plug 'Chiel92/vim-autoformat'
@@ -20,6 +21,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'ervandew/supertab'
   Plug 'othree/html5.vim'
   Plug 'godlygeek/tabular'
+  Plug 'tpope/vim-eunuch'
+
+  " post install (yarn install | npm install)
+  Plug 'prettier/vim-prettier', {
+        \ 'do': 'yarn install',
+        \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 
   " Autocomplete
   Plug 'Shougo/deoplete.nvim'
@@ -27,9 +34,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'roxma/vim-hug-neovim-rpc'
 
   " Snipmate
-  Plug 'MarcWeber/vim-addon-mw-utils'
-  Plug 'tomtom/tlib_vim'
-  Plug 'garbas/vim-snipmate'
+  " Plug 'MarcWeber/vim-addon-mw-utils'
+  " Plug 'tomtom/tlib_vim'
+  " Plug 'garbas/vim-snipmate'
 
   " git
   Plug 'tpope/vim-fugitive'

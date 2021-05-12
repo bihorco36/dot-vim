@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ctags -R .
+ctags -R --exclude=node_modules .
