@@ -65,11 +65,12 @@ let g:rspec_command = "terminal spring rspec {spec}"
 
 nnoremap <F4> <C-]> 
 
-" CtrlP
-nnoremap scl :CtrlP<CR>
-nnoremap scm :CtrlP %:p:h<CR>
-nnoremap scr :CtrlPMRU<CR>
-nnoremap sct :CtrlPTag<CR>
+" Fuzzy Finder
+nnoremap scl :Files<CR>
+nnoremap scm :Files %:p:h<CR>
+nnoremap scr :History<CR>
+nnoremap sct :Tags<CR>
+
 
 " tsuquyomi
 nnoremap td :TsuDefinition<CR>
