@@ -1,27 +1,24 @@
 call plug#begin('~/.vim/plugged')
   " general
-  Plug 'ctrlpvim/ctrlp.vim'
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
-  Plug 'sheerun/vim-polyglot'
-  Plug 'greyblake/vim-preview'
-  Plug 'tpope/vim-dispatch'
-  Plug 'gregsexton/MatchTag'
+  Plug 'sheerun/vim-polyglot' " Language Packs
 
   " code general
   Plug 'Chiel92/vim-autoformat'
   Plug 'Shougo/vimproc.vim'
-  Plug 'scrooloose/nerdcommenter'
   Plug 'scrooloose/syntastic'
-  Plug 'Chiel92/vim-autoformat'
-  Plug 'vim-scripts/bufkill.vim' " provides BD, BW, BUN
   Plug 'tpope/vim-surround'
   Plug 'yegappan/grep'
-  Plug 'tpope/vim-cucumber'
-  Plug 'ervandew/supertab'
   Plug 'othree/html5.vim'
   Plug 'godlygeek/tabular'
   Plug 'tpope/vim-eunuch'
+  Plug 'tomtom/tcomment_vim'
+
+  " Fuzzy finder
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+
 
   " post install (yarn install | npm install)
   Plug 'prettier/vim-prettier', {
@@ -29,14 +26,7 @@ call plug#begin('~/.vim/plugged')
         \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 
   " Autocomplete
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-
-  " Snipmate
-  " Plug 'MarcWeber/vim-addon-mw-utils'
-  " Plug 'tomtom/tlib_vim'
-  " Plug 'garbas/vim-snipmate'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   " git
   Plug 'tpope/vim-fugitive'
@@ -61,18 +51,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'kana/vim-textobj-user'
   Plug 'nelstrom/vim-textobj-rubyblock'
   Plug 'tpope/vim-bundler'
-  Plug 'tomtom/tcomment_vim'
   Plug 'thoughtbot/vim-rspec'
 
-  " Elm
-  " Plug 'ElmCast/elm-vim'
-  " Plug 'w0rp/ale'
-
   " Md
-  Plug 'suan/vim-instant-markdown'
-
-  " Crystal
-  " Plug 'rhysd/vim-crystal'
-
+  Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}  
 
 call plug#end()
