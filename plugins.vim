@@ -11,7 +11,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-surround'
   Plug 'yegappan/grep'
   Plug 'othree/html5.vim'
-  Plug 'godlygeek/tabular'
   Plug 'tpope/vim-eunuch'
   Plug 'tomtom/tcomment_vim'
 
@@ -54,6 +53,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'thoughtbot/vim-rspec'
 
   " Md
-  Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}  
+  Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
 
 call plug#end()
