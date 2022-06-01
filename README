@@ -1,6 +1,6 @@
 Installation:
 
-  git clone https://github.com/janissbinder/dot-vim.git ~/.vim
+  git clone https://github.com/bihorco36/dot-vim.git ~/.vim
   cd ~/vim && bash init.sh
   sudo apt install vim-gtk3 # for easy copy paste and stuff
 
