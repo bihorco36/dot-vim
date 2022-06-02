@@ -55,4 +55,7 @@ call plug#begin('~/.vim/plugged')
   " Md
   Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
 
+  " Snippets
+  Plug 'honza/vim-snippets'
+
 call plug#end()

@@ -9,4 +9,4 @@ Installation:
   :source ~/.vimrc
   :PlugInstall
 
-  :CocInstall coc-tsserver coc-json coc-html coc-css coc-solargraph
+  :CocInstall coc-tsserver coc-json coc-html coc-css coc-solargraph coc-snippets coc-angular coc-prettier
