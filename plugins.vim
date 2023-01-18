@@ -7,7 +7,6 @@ call plug#begin('~/.vim/plugged')
   " code general
   Plug 'Chiel92/vim-autoformat'
   Plug 'Shougo/vimproc.vim'
-  Plug 'scrooloose/syntastic'
   Plug 'tpope/vim-surround'
   Plug 'yegappan/grep'
   Plug 'othree/html5.vim'
@@ -57,5 +56,8 @@ call plug#begin('~/.vim/plugged')
 
   " Snippets
   Plug 'honza/vim-snippets'
+
+  " Django
+  Plug 'tweekmonster/django-plus.vim'
 
 call plug#end()

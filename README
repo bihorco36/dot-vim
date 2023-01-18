@@ -2,11 +2,14 @@ Installation:
 
   git clone https://github.com/bihorco36/dot-vim.git ~/.vim
   cd ~/vim && bash init.sh
+
   sudo apt install vim-gtk3 # for easy copy paste and stuff
+  sudo apt install ripgrep # for neovim
+  gem install solargraph
 
   Open vim and enter the following commands
 
   :source ~/.vimrc
   :PlugInstall
 
-  :CocInstall coc-tsserver coc-json coc-html coc-css coc-solargraph coc-snippets coc-angular coc-prettier
+  :CocInstall coc-tsserver coc-json coc-html coc-css coc-solargraph coc-snippets coc-angular coc-prettier coc-eslint coc-vetur
