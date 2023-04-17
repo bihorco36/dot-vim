@@ -5,8 +5,6 @@ execute pathogen#infect()
 source ~/.vim/plugins.vim
 
 " UI
-colorscheme base16-default-dark
-let base16colorspace=256
 set guioptions-=T " Removes top toolbar
 set guioptions-=r " Removes right hand scroll bar
 set guioptions+=a " Adds Clipboard
@@ -35,8 +33,11 @@ set number
 set relativenumber
 " highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
+" sudo save
+" command WS :execute ':silent w !sudo tee % > /dev/null' | :edit!
+
 " ctrlp vim
-set wildignore+=*tmp/*,*node_modules/**,*dist/*,*.so,*.swp,*.zip,*spec/coverage**,*spec/reports**
+set wildignore+=*public/**,*.log,*tmp/*,*node_modules/**,*dist/*,*.so,*.swp,*.zip,*spec/coverage**,*spec/reports**
 
 " indentation
 filetype plugin indent on
@@ -52,7 +53,7 @@ autocmd FileType python map <F2> obreakpoint()<ESC>
 map <F7> oinclude_context 'storage_helpers'<ESC>o<ESC>
 map <F8> $bhi, storage: true<ESC>
 map <F9> 5G$bhi, storage: true<ESC>
-nnoremap <silent> <F3> :Rgrep<CR>
+nnoremap <silent> <F3> :Rgrep --exclude-dir={node_modules,public,log}<CR>
 " nnoremap <silent> <F3> :Rg<CR> Neovim
 nmap <F1> <nop>
 map <F6>  :%s/:\([^=,']*\) =>/\1:/gc<CR>
@@ -62,12 +63,13 @@ map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
-let g:rspec_command = "terminal spring rspec {spec}"
+let g:rspec_command = "split | terminal spring rspec {spec}"
 
 nnoremap <F4> <C-]> 
 
 " Fuzzy Finder
 nnoremap scl :Files<CR>
+nnoremap scb :Buffers<CR>
 nnoremap scm :Files %:p:h<CR>
 nnoremap scr :History<CR>
 nnoremap sct :Tags<CR>
@@ -96,17 +98,35 @@ let g:mustache_abbreviations = 1
 " Laststatus
 set laststatus=2
 
-" base16 stuff
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
+" Important!!
+if has('termguicolors')
+  set termguicolors
 endif
+" For dark version.
+set background=dark
+" For light version.
+" set background=light
+" Set contrast.
+" This configuration option should be placed before `colorscheme everforest`.
+" Available values: 'hard', 'medium'(default), 'soft'
+let g:everforest_background = 'soft'
+" For better performance
+let g:everforest_better_performance = 1
+colorscheme everforest
 
 " clipboard
 set clipboard=unnamed
 
 " Autocomplete
 let g:deoplete#enable_at_startup = 1
+
+" Rubocop
+nnoremap <silent> rc :execute "terminal rubocop -A <cWORD>"<CR>
+nnoremap <silent> ra :execute "terminal rubocop -A %"<CR>
+
+function! Rubocop()
+  execute "terminal rubocop -A <cWORD>"
+endfunction
 
 """""""""""""""""
 """""" COC
@@ -125,7 +145,7 @@ set updatetime=300
 set signcolumn=yes
 
 " Treat variables with underscore as single word
-set iskeyword-=_
+set iskeyword+=-
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: There's always complete item selected by default, you may want to enable
@@ -184,8 +204,11 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+"
+
+
+xmap <leader>f  <Plug>CocActionAsync('runCommand', 'prettier.formatFile')
+nmap <leader>f  <Plug>CocActionAsync('runCommand', 'prettier.formatFile')
 
 augroup mygroup
   autocmd!
@@ -207,6 +230,11 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Run the Code Lens action on the current line.
 nmap <leader>cl  <Plug>(coc-codelens-action)
+
+" Remap keys for applying refactor code actions
+nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
+xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -272,3 +300,141 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 """""""""""""""""
 
 set grepprg=rg\ --vimgrep
+
+
+
+
+
+
+""""""""""""""""""
+""" C# Kacke
+""""""""""""""""""
+" Don't autoselect first omnicomplete option, show options even if there is only
+" one (so the preview documentation is accessible). Remove 'preview', 'popup'
+" and 'popuphidden' if you don't want to see any documentation whatsoever.
+" Note that neovim does not support `popuphidden` or `popup` yet:
+" https://github.com/neovim/neovim/issues/10996
+if has('patch-8.1.1880')
+  set completeopt=longest,menuone,popuphidden
+  " Highlight the completion documentation popup background/foreground the same as
+  " the completion menu itself, for better readability with highlighted
+  " documentation.
+  set completepopup=highlight:Pmenu,border:off
+else
+  set completeopt=longest,menuone,preview
+  " Set desired preview window height for viewing documentation.
+  set previewheight=5
+endif
+
+" Tell ALE to use OmniSharp for linting C# files, and no other linters.
+let g:ale_linters = { 'cs': ['OmniSharp'] }
+
+augroup omnisharp_commands
+  autocmd!
+
+  " Show type information automatically when the cursor stops moving.
+  " Note that the type is echoed to the Vim command line, and will overwrite
+  " any other messages in this space including e.g. ALE linting messages.
+  autocmd CursorHold *.cs OmniSharpTypeLookup
+
+  " The following commands are contextual, based on the cursor position.
+  autocmd FileType cs nmap <silent> <buffer> gd <Plug>(omnisharp_go_to_definition)
+  autocmd FileType cs nmap <silent> <buffer> <Leader>osfu <Plug>(omnisharp_find_usages)
+  autocmd FileType cs nmap <silent> <buffer> <Leader>osfi <Plug>(omnisharp_find_implementations)
+  autocmd FileType cs nmap <silent> <buffer> <Leader>ospd <Plug>(omnisharp_preview_definition)
+  autocmd FileType cs nmap <silent> <buffer> <Leader>ospi <Plug>(omnisharp_preview_implementations)
+  autocmd FileType cs nmap <silent> <buffer> <Leader>ost <Plug>(omnisharp_type_lookup)
+  autocmd FileType cs nmap <silent> <buffer> <Leader>osd <Plug>(omnisharp_documentation)
+  autocmd FileType cs nmap <silent> <buffer> <Leader>osfs <Plug>(omnisharp_find_symbol)
+  autocmd FileType cs nmap <silent> <buffer> <Leader>osfx <Plug>(omnisharp_fix_usings)
+  autocmd FileType cs nmap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help)
+  autocmd FileType cs imap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help)
+
+  " Navigate up and down by method/property/field
+  autocmd FileType cs nmap <silent> <buffer> [[ <Plug>(omnisharp_navigate_up)
+  autocmd FileType cs nmap <silent> <buffer> ]] <Plug>(omnisharp_navigate_down)
+  " Find all code errors/warnings for the current solution and populate the quickfix window
+  autocmd FileType cs nmap <silent> <buffer> <Leader>osgcc <Plug>(omnisharp_global_code_check)
+  " Contextual code actions (uses fzf, vim-clap, CtrlP or unite.vim selector when available)
+  autocmd FileType cs nmap <silent> <buffer> <Leader>osca <Plug>(omnisharp_code_actions)
+  autocmd FileType cs xmap <silent> <buffer> <Leader>osca <Plug>(omnisharp_code_actions)
+  " Repeat the last code action performed (does not use a selector)
+  autocmd FileType cs nmap <silent> <buffer> <Leader>os. <Plug>(omnisharp_code_action_repeat)
+  autocmd FileType cs xmap <silent> <buffer> <Leader>os. <Plug>(omnisharp_code_action_repeat)
+
+  autocmd FileType cs nmap <silent> <buffer> <Leader>os= <Plug>(omnisharp_code_format)
+
+  autocmd FileType cs nmap <silent> <buffer> <Leader>osnm <Plug>(omnisharp_rename)
+
+  autocmd FileType cs nmap <silent> <buffer> <Leader>osre <Plug>(omnisharp_restart_server)
+  autocmd FileType cs nmap <silent> <buffer> <Leader>osst <Plug>(omnisharp_start_server)
+  autocmd FileType cs nmap <silent> <buffer> <Leader>ossp <Plug>(omnisharp_stop_server)
+augroup END
+
+
+""""""""""""
+"" Snippets
+""""""""""""
+
+let g:snipMate = {}
+let g:snipMate.scope_aliases = {}
+let g:snipMate.scope_aliases['ruby'] = 'ruby,ruby-rails,ruby-3.1'
+
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)
+
+let g:UltiSnipsExpandTrigger="<c-CR>"
+let g:UltiSnipsJumpForwardTrigger="<c-l>"
+let g:UltiSnipsJumpBackwardTrigger="<c-h>"
+
+
+""""""""""""""
+" Ale linting
+""""""""""""""
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\   'ruby': []
+\}
+let g:ale_linters = {
+\ 'cs': ['OmniSharp']
+\}
+let g:ale_set_highlight = 0
+let g:ale_linters_explicit = 1
+
+""""""""""
+" Folding
+""""""""""
+:set foldmethod=syntax
+:set foldlevel=99
+
+"""""""""
+" LateX
+"""""""""
+let g:livepreview_previewer = 'evince'
+let g:livepreview_use_biber = 1
+let g:livepreview_cursorhold_recompile = 0
+let g:coc_filetype_map = {'tex': 'latex'}
+let g:livepreview_engine = 'pdflatex'
+
+""""""""""
+" Copilot
+""""""""""
+imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
+
+

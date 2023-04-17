@@ -2,7 +2,6 @@ call plug#begin('~/.vim/plugged')
   " general
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
-  Plug 'sheerun/vim-polyglot' " Language Packs
 
   " code general
   Plug 'Chiel92/vim-autoformat'
@@ -17,12 +16,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
-
-  " post install (yarn install | npm install)
-  Plug 'prettier/vim-prettier', {
-        \ 'do': 'yarn install',
-        \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
-
   " Autocomplete
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -31,21 +24,12 @@ call plug#begin('~/.vim/plugged')
 
   " UI
   Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
+  Plug 'sainnhe/everforest'
   Plug 'chriskempson/base16-vim'
-
-  " js / ts / coffeescript
-  Plug 'leafgarland/typescript-vim'
-  Plug 'Quramy/tsuquyomi'
-  Plug 'kchmck/vim-coffee-script'
-  Plug 'mustache/vim-mustache-handlebars'
-  Plug 'pangloss/vim-javascript'
-  Plug 'burnettk/vim-angular'
 
   " ruby / rails
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-endwise' " adds end to if, do, def ...
-  Plug 'vim-ruby/vim-ruby'
   Plug 'kana/vim-textobj-user'
   Plug 'nelstrom/vim-textobj-rubyblock'
   Plug 'tpope/vim-bundler'
@@ -56,8 +40,13 @@ call plug#begin('~/.vim/plugged')
 
   " Snippets
   Plug 'honza/vim-snippets'
+  Plug 'SirVer/ultisnips'
 
-  " Django
-  Plug 'tweekmonster/django-plus.vim'
+  " C#
+  Plug 'OmniSharp/omnisharp-vim', { 'for': 'cs' }
+  Plug 'dense-analysis/ale', { 'for': 'cs' }
+
+  " Switch true to false
+  Plug 'AndrewRadev/switch.vim'
 
 call plug#end()
