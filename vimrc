@@ -44,35 +44,63 @@ filetype plugin indent on
 "
 " map
 let mapleader=","
-nmap <F1> <nop>
+map <F1> yiwoconsole.log(<ESC>pa);<ESC>
 autocmd FileType ruby map <F2> orequire 'pry'; binding.pry<ESC>
 autocmd FileType javascript map <F2> odebugger<ESC>
 autocmd FileType typescript map <F2> odebugger<ESC>
 autocmd FileType python map <F2> obreakpoint()<ESC>
 
+
+" Custom Commands
 map <F7> oinclude_context 'storage_helpers'<ESC>o<ESC>
 map <F8> $bhi, storage: true<ESC>
 map <F9> 5G$bhi, storage: true<ESC>
-nnoremap <silent> <F3> :Rgrep --exclude-dir={node_modules,public,log}<CR>
-" nnoremap <silent> <F3> :Rg<CR> Neovim
-nmap <F1> <nop>
+" nnoremap <silent> <F3> :Rgrep --exclude-dir={node_modules,public,log}<CR>
+nnoremap <silent> <F3> :CocSearch <c-r><c-w> <CR>
 map <F6>  :%s/:\([^=,']*\) =>/\1:/gc<CR>
+nnoremap <silent>cdg :cd %:h \| cd `git rev-parse --show-toplevel`<CR>
+command S :call ToggleFileExtension()
+
+" Function to toggle between .ts and .html files
+function! ToggleFileExtension()
+  let current_file = expand('%')
+  let current_extension = expand('%:e')
+
+  if current_extension == 'ts'
+    let target_file = substitute(current_file, '\.ts$', '.html', '')
+  elseif current_extension == 'html'
+    let target_file = substitute(current_file, '\.html$', '.ts', '')
+  else
+    echo "Unsupported file extension"
+    return
+  endif
+
+  if filereadable(target_file)
+    execute 'edit ' . target_file
+  else
+    echo "File not found: " . target_file
+  endif
+endfunction
 
 " RSpec.vim mappings
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
-let g:rspec_command = "split | terminal spring rspec {spec}"
+let g:rspec_command = "split | terminal rspec {spec}"
 
 nnoremap <F4> <C-]> 
 
 " Fuzzy Finder
 nnoremap scl :Files<CR>
+nnoremap scf :Files --ansi<CR>
 nnoremap scb :Buffers<CR>
 nnoremap scm :Files %:p:h<CR>
 nnoremap scr :History<CR>
 nnoremap sct :Tags<CR>
+
+command! -bang -nargs=? -complete=dir Files
+      \ call fzf#vim#files(<q-args>, {'options': ['--tiebreak=end']}, <bang>0)
 
 
 " tsuquyomi
